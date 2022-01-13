@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Pasador Diapositivas</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+	<div class="contenedor-global">
+		<div class="contenedor-menu" value="inactive"> 
+			<nav id="contenedor-nav">
+				<a href="#" onclick="toggleMenu()" class="boton-hamburguesa"
+				id="boton-hamburguesa">
+				<img src="icono-hamburguesa.png" width="30px" height="30px">
+			</a>
+				<ul id="lista-de-diapositivas">
+			</ul></nav>
+		</div>
+		<div class="contenido">
+			<div class="contenedor-imagenes" id="contenedor-imagenes"></div>
+			<div class="contenedor-botones">
+				<button onclick="clickLeft()">back</button>
+				<div>
+					<p id="numero-de-diapositiva"> 1/3</p>
+				</div>
+				<button onclick="clickRight()">next</button>
+			</div>
+		<div>
+	</div>
+</body>
+</html>
+
+<script type="text/javascript">
+	//se declara el array de paths
+	var paths = ["./diapositivas/Diapositiva1.png","./diapositivas/Diapositiva2.png","./diapositivas/Diapositiva3.png"]
+
+
+	//se agregan las imágenes con los paths
+	const imgArray = []; 
+	var listaDiapositivas = ""
+	for (let i = 0; i< paths.length ;i++){
+		var imgDiapositiva = new Image(784, 441)
+		imgDiapositiva.src = paths[i]
+		imgDiapositiva.id = "imgDiapositiva" + i
+		imgDiapositiva.className = "imgDiapositiva"
+		imgArray.push(imgDiapositiva)
+
+		listaDiapositivas = listaDiapositivas.concat('<li><a href="#" onclick="loadContent('+i+ ')">Diapositiva '+ i+'</a></li>')
+	}
+	document.getElementById("lista-de-diapositivas").innerHTML = listaDiapositivas 
+	document.getElementById("numero-de-diapositiva").innerHTML = '1/'+ imgArray.length
+
+	function getImageIndex(){
+		currentImage = document.getElementsByClassName("imgDiapositiva")[0]
+		return parseInt(currentImage.id.slice("imgDiapositiva".length))
+	}
+
+	function clickRight(){
+		currentImageIndex = getImageIndex()
+		if(currentImageIndex < imgArray.length-1){
+			currentImageIndex++;
+			loadContent(currentImageIndex)
+		}
+	}
+	function clickLeft(){
+		currentImageIndex = getImageIndex()
+		if(currentImageIndex > 0){
+			currentImageIndex--
+			loadContent(currentImageIndex)
+		} 
+	}
+
+	function toggleMenu(){
+		var navValue = document.getElementsByClassName("contenedor-menu")[0].value;
+		if(navValue === "inactive"){
+			document.getElementById("contenedor-nav").style.animation = "slidein 0.5s ease-in-out forwards";
+			document.getElementsByClassName("contenedor-menu")[0].value = "active"
+		}else{
+			document.getElementById("contenedor-nav").style.animation = "slideout 0.5s ease-in-out forwards";
+			document.getElementsByClassName("contenedor-menu")[0].value = "inactive"
+		}
+	}
+
+	function loadContent(currentImageIndex){
+		document.getElementById("contenedor-imagenes").innerHTML = ''
+		document.getElementById("contenedor-imagenes").appendChild(imgArray[currentImageIndex])
+		document.getElementById("numero-de-diapositiva").innerHTML = (currentImageIndex+1) + '/'+ imgArray.length
+	}
+
+	loadContent(0)
+	
+
+</script>
