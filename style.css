@@ -2,6 +2,7 @@
 	box-sizing: border-box;
 	margin: 0;
 	padding: 0;
+	font-family: Arial, Helvetica, sans-serif;
 }
 .contenedor-global{
 	width: 850px;
@@ -17,7 +18,7 @@
 }
 
 .contenedor-menu nav{
-	width: 250px;
+	width: 200px;
 	height: 530px;
 	color: gray;
 	background: black;
@@ -26,9 +27,9 @@
 	right: 0px;
 }
 
-@keyframes slideout{ to{ right: -200px; } }
+@keyframes slideout{ to{ right: -150px; } }
 @keyframes slidein{ 
-	from{ right: -200px;}
+	from{ right: -150px;}
 	to{ right: 0px; } 
 }
 
@@ -39,7 +40,7 @@
 .contenedor-menu nav ul{
 	padding: 0;
 	margin: 0;
-	width: 250px;
+	width: 100%;
 	list-style: none;
 	display: flex;
 	flex-direction: column;
@@ -51,7 +52,7 @@
 .contenedor-menu nav ul li a{
 	text-decoration: none;
 	color: white;
-	font-size: 20px;
+	font-size: 16px;
 }
 
 .boton-hamburguesa{

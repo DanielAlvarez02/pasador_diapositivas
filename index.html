@@ -45,7 +45,7 @@
 		imgDiapositiva.className = "imgDiapositiva"
 		imgArray.push(imgDiapositiva)
 
-		listaDiapositivas = listaDiapositivas.concat('<li><a href="#" onclick="loadContent('+i+ ')">Diapositiva '+ i+'</a></li>')
+		listaDiapositivas = listaDiapositivas.concat('<li><a href="#" onclick="loadContent('+i+ ')">Slide '+ i+'</a></li>')
 	}
 	document.getElementById("lista-de-diapositivas").innerHTML = listaDiapositivas 
 	document.getElementById("numero-de-diapositiva").innerHTML = '1/'+ imgArray.length
